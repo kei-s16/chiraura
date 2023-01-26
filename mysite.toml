@@ -39,6 +39,11 @@ url = "https://github.com/kei-s16/techblog-linter-settings"
 description = "技術ブログとかやるときに日本語lintする設定"
 
 [[software]]
+title = "chiraura"
+url = "https://github.com/kei-s16/chiraura"
+description = "このページを生成している toml -> html なツール"
+
+[[software]]
 title = "hugo-shortcodes-hareruya-deck-builder"
 url = "https://github.com/kei-s16/hugo-shortcodes-hareruya-deck-builder"
 description = "晴れる屋のデッキ埋め込み機能をHugoで使うためのラッパーショートコード"
