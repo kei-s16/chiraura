@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="./style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <title>{{ profile.domain }}</title>
+    </head>
+    <body>
+        <header>
+            <h1>{{ profile.author }}</h1>
+        </header>
+        <p> {{ profile.description }} </p>
+        <article>
+            <h2>Website</h2>
+            <div class="cards">
+                {% for s in profile.website %}
+                <article class="card">
+                    <header>
+                        <h3><a href={{ s.url }} rel="noopener noreferrer" target="_blank"> {{ s.title }}<span class="material-symbols-outlined">link</span></a></h3>
+                    </header>
+                    <p> {{ s.description }}</p>
+                </article>
+                {% endfor %}
+            </div>
+            <h2>Software</h2>
+            <div class="cards">
+                {% for s in profile.software %}
+                <article class="card">
+                    <header>
+                        <h3><a href={{ s.url }} rel="noopener noreferrer" target="_blank"> {{ s.title }}<span class="material-symbols-outlined">link</span></a></h3>
+                    </header>
+                    <p> {{ s.description }}</p>
+                </article>
+                {% endfor %}
+            </div>
+        </article>
+    </body>
+</html>

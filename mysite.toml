@@ -1,0 +1,49 @@
+version = "0.0.1"
+author = "kei-s16"
+domain = "k16em.net"
+description = "neovimとかarchlinuxとか使って遊んでます"
+
+[[website]]
+title = "blog"
+url = "https://blog.k16em.net"
+description = "比較的ちゃんと書いてるブログ"
+
+[[website]]
+title = "Scrapbox"
+url = "https://scrapbox.io/k16em/"
+description = "雑多なメモ置き場"
+
+[[website]]
+title = "Twitter"
+url = "https://twitter.com/_kei_s"
+description = "Twitter(恥)"
+
+[[website]]
+title = "GitHub"
+url = "https://github.com/kei-s16"
+description = "GitHub"
+
+[[website]]
+title = "Keybase"
+url = "https://keybase.io/k16em"
+description = "Keybase"
+
+[[software]]
+title = "skkeleton-azik-kanatable"
+url = "https://github.com/kei-s16/skkeleton-azik-kanatable"
+description = "skkeletonにAZIKテーブル定義を追加するプラグイン"
+
+[[software]]
+title = "techblog-linter-settings"
+url = "https://github.com/kei-s16/techblog-linter-settings"
+description = "技術ブログとかやるときに日本語lintする設定"
+
+[[software]]
+title = "hugo-shortcodes-hareruya-deck-builder"
+url = "https://github.com/kei-s16/hugo-shortcodes-hareruya-deck-builder"
+description = "晴れる屋のデッキ埋め込み機能をHugoで使うためのラッパーショートコード"
+
+[[software]]
+title = "dbot-dice"
+url = "https://github.com/kei-s16/dbot-dice"
+description = "Discordのdicebotくん"
