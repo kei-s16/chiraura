@@ -1,0 +1,14 @@
+on: [push]
+
+name: format checker
+
+jobs:
+  fmt:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: run cargo fmt
+        run: cargo fmt -- --check
