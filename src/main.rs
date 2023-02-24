@@ -2,8 +2,8 @@ use clap::Parser;
 use std::fs::File;
 use std::io::Write;
 
-mod util;
 mod types;
+mod util;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]

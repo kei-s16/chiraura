@@ -14,5 +14,5 @@ pub struct Profile {
 pub struct Item {
     pub title: String,
     pub url: String,
-    pub description: String
+    pub description: String,
 }
