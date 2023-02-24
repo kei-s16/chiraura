@@ -43,8 +43,14 @@ mod tests {
         assert_eq!(_result.website[0].title, "blog");
         assert_eq!(_result.website[0].url, "https://blog.k16em.net");
         assert_eq!(_result.software[0].title, "techblog-linter-settings");
-        assert_eq!(_result.software[0].url, "https://github.com/kei-s16/techblog-linter-settings");
-        assert_eq!(_result.software[0].description, "技術ブログとかやるときに日本語lintする設定");
+        assert_eq!(
+            _result.software[0].url,
+            "https://github.com/kei-s16/techblog-linter-settings"
+        );
+        assert_eq!(
+            _result.software[0].description,
+            "技術ブログとかやるときに日本語lintする設定"
+        );
     }
 
     // TODO: エラーハンドリングちゃんとする
