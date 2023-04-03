@@ -1,0 +1,60 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+name: ci
+
+jobs:
+  run-clippy:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: "checkoutする"
+        uses: actions/checkout@v3
+      - name: "キャッシュを使う"
+        uses: actions/cache@v3
+        id: cache-cargo
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: "rustまわりをセットアップする"
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: nightly
+          components: clippy
+      - name: "clippyを実行する"
+        run: cargo clippy
+
+  run-test:
+    runs-on: ubuntu-22.04
+    needs: run-clippy
+    steps:
+      - name: "checkoutする"
+        uses: actions/checkout@v3
+      - name: "キャッシュを使う"
+        uses: actions/cache@v3
+        id: cache-cargo
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: "rustまわりをセットアップする"
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: nightly
+      - name: "cargo testを実行する"
+        run: cargo test
