@@ -14,7 +14,8 @@ jobs:
   run-test:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - name: "checkoutする"
+        uses: actions/checkout@v3
       - name: "キャッシュを使う"
         uses: actions/cache@v3
         id: cache-cargo
@@ -25,8 +26,9 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - uses: dtolnay/rust-toolchain@stable
+      - name: "rustまわりをセットアップする"
+        uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: nightly
-      - name: run cargo test
+      - name: "cargo testを実行する"
         run: cargo test
