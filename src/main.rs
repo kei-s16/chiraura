@@ -1,6 +1,7 @@
 use clap::Parser;
 use std::fs::File;
 use std::io::Write;
+use std::string::String;
 
 mod types;
 mod util;
@@ -14,30 +15,59 @@ struct Args {
     output_path: Option<String>,
 }
 
-fn generate_html(input_path: String) -> std::string::String {
+enum GenerateHTMLError {
+    NoFilePathGiven,
+}
+
+enum SaveHTMLError {
+    NoFilePathGiven,
+    NoContentGiven,
+}
+
+fn generate_html(input_path: String) -> Result<String, GenerateHTMLError> {
+    if input_path.is_empty() {
+        return Err(GenerateHTMLError::NoFilePathGiven);
+    }
+
     let body = util::file::read_file(input_path).unwrap();
     let profile: types::Profile = util::toml::parse_toml_to_config(body).unwrap();
     let page = util::askama::generate_page(profile);
-    page
+
+    Ok(page)
 }
 
-fn write_html(output_path: String, contents: String) {
+fn write_html(output_path: String, contents: String) -> Result<(), SaveHTMLError> {
+    if output_path.is_empty() {
+        return Err(SaveHTMLError::NoFilePathGiven);
+    }
+
+    if contents.is_empty() {
+        return Err(SaveHTMLError::NoContentGiven);
+    }
+
     let mut output = File::create(output_path).unwrap();
     let _ = writeln!(output, "{}", contents);
+
+    Ok(())
 }
 
 fn main() {
     let args = Args::parse();
 
-    if let Some(input_path) = args.input_path.as_deref() {
-        let page = generate_html(input_path.to_string());
-
-        if let Some(output_path) = args.output_path.as_deref() {
-            write_html(output_path.to_string(), page);
-        } else {
-            println!("no output path given.");
+    let page: String = match generate_html(args.input_path.unwrap()) {
+        Ok(page) => page,
+        Err(GenerateHTMLError::NoFilePathGiven) => {
+            panic!("no filepath given.")
         }
-    } else {
-        println!("no filepath given.");
-    }
+    };
+
+    match write_html(args.output_path.unwrap(), page) {
+        Ok(()) => (),
+        Err(SaveHTMLError::NoFilePathGiven) => {
+            panic!("no output path given.")
+        }
+        Err(SaveHTMLError::NoContentGiven) => {
+            panic!("no contents given.")
+        }
+    };
 }
