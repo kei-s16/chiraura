@@ -25,7 +25,7 @@ enum SaveHTMLError {
 }
 
 fn generate_html(input_path: String) -> Result<String, GenerateHTMLError> {
-    if input_path.len() == 0 {
+    if input_path.is_empty() {
         return Err(GenerateHTMLError::NoFilePathGiven);
     }
 
@@ -37,11 +37,11 @@ fn generate_html(input_path: String) -> Result<String, GenerateHTMLError> {
 }
 
 fn write_html(output_path: String, contents: String) -> Result<(), SaveHTMLError> {
-    if output_path.len() == 0 {
+    if output_path.is_empty() {
         return Err(SaveHTMLError::NoFilePathGiven);
     }
 
-    if contents.len() == 0 {
+    if contents.is_empty() {
         return Err(SaveHTMLError::NoContentGiven);
     }
 
