@@ -46,7 +46,7 @@ fn write_html(output_path: String, contents: String) -> Result<(), SaveHTMLError
     }
 
     let mut output = File::create(output_path).unwrap();
-    let _ = writeln!(output, "{}", contents);
+    let result = writeln!(output, "{}", contents);
 
     Ok(())
 }
