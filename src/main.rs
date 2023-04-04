@@ -67,7 +67,7 @@ fn main() {
             panic!("no output path given.")
         }
         Err(SaveHTMLError::NoContentGiven) => {
-            panic!("no contents given.")
+            panic!("no contents given")
         }
     };
 }
