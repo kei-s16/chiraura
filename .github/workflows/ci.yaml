@@ -27,10 +27,6 @@ jobs:
             ~/.cargo/git/db/
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - name: "reviewdogをセットアップする"
-        uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
       - name: "rustまわりをセットアップする"
         uses: dtolnay/rust-toolchain@stable
         with:
