@@ -2,11 +2,19 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '**/*.rs'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
   pull_request:
     types:
       - opened
       - synchronize
       - reopened
+    paths:
+      - '**/*.rs'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
 
 name: ci
 
