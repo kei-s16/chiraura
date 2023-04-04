@@ -62,5 +62,6 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: nightly
+          components: clippy
       - name: "cargo testを実行する"
         run: cargo test
